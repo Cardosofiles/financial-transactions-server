@@ -1,7 +1,7 @@
 import fastify from "fastify";
 
-// module of creating id for registration
 import { knex } from "./database";
+import { env } from "./env";
 
 const app = fastify();
 
@@ -15,7 +15,7 @@ app.get("/hello", async (req, res) => {
 
 app
   .listen({
-    port: 3333,
+    port: env.PORT,
   })
   .then(() => {
     console.log("HTTP Server is running on port 3333");
