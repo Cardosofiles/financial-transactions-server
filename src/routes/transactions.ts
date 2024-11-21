@@ -104,6 +104,12 @@ export async function transactionsRoutes(app: FastifyInstance) {
     {
       preHandler: [checkSessionIdExist],
     },
-    async () => {}
+    async (request) => {
+      const { sessionId } = request.cookies;
+
+      await knex("transactions").where("session_id", sessionId).del();
+
+      return "All records deleted successfully!";
+    }
   );
 }
